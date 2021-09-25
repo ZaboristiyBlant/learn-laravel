@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Blog\PostController;
 use App\Http\Controllers\Blog\Admin\CategoryController;
+use App\Http\Controllers\Blog\Admin\PostController as AdminPostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,8 @@ Route::prefix('admin/blog')->group(function () {
     Route::resource('categories', CategoryController::class)
     ->only($methods)
     ->names('blog.admin.categories');
+    Route::resource('posts', AdminPostsController::class)
+        ->except(['show'])
+        ->names('blog.admin.posts');
 });
 //<
