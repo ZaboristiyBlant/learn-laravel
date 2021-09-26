@@ -85,6 +85,9 @@ class CategoryController extends BaseController
         // $item = BlogCategory::findOrFail($id);
         // $categoryList = BlogCategory::all();
         $item = $this->blogCategoryRepository->getEdit($id);
+        if (empty($item)){
+            abort(404);
+        }
         $categoryList = $this->blogCategoryRepository->getForComboBox();
         return view('blog.admin.categories.edit',
             compact('item','categoryList'));
